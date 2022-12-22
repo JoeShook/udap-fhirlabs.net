@@ -3,6 +3,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 RUN mkdir -p /temp/_UDAP
 WORKDIR /app
+EXPOSE 8080
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 
@@ -23,7 +24,7 @@ RUN dotnet publish "FhirLabsApi.net.csproj" -c Release -o /app/publish /p:UseApp
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENV ASPNETCORE_URLS=http://*:${PORT}
+ENV ASPNETCORE_URLS=http://*:8080
 ENV ASPNETCORE_ENVIRONMENT release
 ENV DOTNET_ENVIRONMENT release
 ENTRYPOINT ["dotnet", "FhirLabsApi.net.dll" ]

@@ -27,17 +27,18 @@
       "publishAllPorts": true,
       "useSSL": false,
       "environmentVariables": {
-        "ASPNETCORE_URLS": "http://*:80"
+        "ASPNETCORE_URLS": "http://*:8080"
       }
     },
     "Docker Release": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "http://fhirlabs.net:5016/fhir/r4/.well-known/udap/communities/ashtml",
+      "launchUrl": "http://localhost:5016/fhir/r4/.well-known/udap/communities/ashtml",
       "publishAllPorts": true,
       "useSSL": false,
       "environmentVariables": {
-        "DOTNET_ENVIRONMENT": "Release"
+        "DOTNET_ENVIRONMENT": "Release",
+        "ASPNETCORE_URLS": "http://*:8080"
       }
     },
     "WSL": {
