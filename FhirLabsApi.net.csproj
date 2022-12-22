@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileRunArguments>-p "5016:80" -p "7016:443" </DockerfileRunArguments>
+    <UserSecretsId>1eda4111-e423-4af5-afe3-3c16b4dda76e</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="app.yaml" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\**" />
+    <Content Remove="Controllers\**" />
+    <EmbeddedResource Remove="Controllers\**" />
+    <None Remove="Controllers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="brianpos.Fhir.R4B.DemoFileSystemFhirServer" Version="4.3.0-beta4" />
+    <PackageReference Include="brianpos.Fhir.R4B.WebApi.AspNetCore" Version="4.3.0-beta2" />
+    <PackageReference Include="Hl7.Fhir.Specification.R4B" Version="4.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+    <PackageReference Include="Udap.Metadata.Server" Version="0.0.3-preview001" />
+  </ItemGroup>
+
+ 
+  <!-- <ItemGroup> -->
+  <!--   <ProjectReference Include="..\..\Udap.Common/Udap.Common.csproj" /> -->
+  <!--   <ProjectReference Include="..\..\Udap.Metadata.Server/Udap.Metadata.Server.csproj" /> -->
+  <!-- </ItemGroup> -->
+
+  <ItemGroup>
+    <None Update="CertStore\issued\fhirlabs.net.client.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="CertStore\issued\fhirLabsApiClientLocalhostCert.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="CertStore\issued\udap-sandbox-surescripts.p12">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  
+
+</Project>
